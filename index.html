@@ -10,11 +10,19 @@
 <body>
     <div class="todo">
         <div class="todo_content">
-            <h1 class="todo_title">Все задачи</h1>
+            <h1 class="todo_title">All tasks</h1>
+            <h2 id="current_date">Date: </h2>
+            <input id="calendar" type="date" >
+            <button type="button" id="set_today">Set today</button>
             <div class="todo_new">
-               <input type="text" placeholder="Новая задача">
-               <div class="todo_add">+</div>
+               <input id="new" type="text" placeholder="Новая задача">
+               <div id="add" class="todo_add">+</div>
             </div>
+            <div class="todo_task-count">
+                <span>Всего задач:</span>
+                <strong id="count">0</strong>
+            </div>
+            <div id="tasks"class="todo_list">   </div>
         </div>
     </div>
    <script src="script.js"></script> 

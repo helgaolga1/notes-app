@@ -26,9 +26,12 @@ selectedDate.setHours(0,0,0,0);
 window.onload = function(){
     displayDate()
     const raw=localStorage.getItem('notes')
+    if (raw!=undefined){
     tasks=JSON.parse(raw)
     counts()
     displayNotes()
+    }
+   
     //добавить то что мы сохранили в local storage в массив tasks
     //отобразить все текущие заметки (tasks) 
     
@@ -73,6 +76,7 @@ function displayNotes(){
    } 
 dom.taskList.innerHTML=noteDivs;
 }
+
 //отследить выполнеия задачи 
 function changeNoteStatus(id){
 const clickedNote=tasks.find(e=>e.id==id)

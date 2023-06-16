@@ -24,6 +24,7 @@ body {
     width: 90vh;
     border-radius: 16px;
 }
+
 .todo_content {
 }
 .todo_title {
@@ -44,7 +45,11 @@ border: 1px solid var(--default);
 border-radius: 5px;
 flex-grow: 1;
 }
-.todo_add {
+.todo_add{
+    /* margin-left: auto;
+     margin-right: 0;  */
+    font-size: 44px;
+    line-height: calc(var(--size)*0.88);
     cursor: pointer;
     text-align: center;
     width: var(--size);
@@ -54,7 +59,88 @@ flex-grow: 1;
     height: var(--size);
     font-size: 32px;
     font-weight: 200;
-    border: 1px solid var(--default);
+    background: var(--accent);
+    color: white;
+}
+.todo_list>*:not(:last-child) {
+margin-bottom: 8px;
+}
+.todo_task {
+    width: 100%;
+    cursor: default;
+    --size:36px;
+    display: flex;
+    align-items: center;
+    min-height: var(--size);
+}
+.todo_task:hover .todo_task-del{
+    display: block;
+} 
+.todo_task complete .todo_task-text {
+text-decoration: line-through;
+color: var(--default);
+}
+
+.todo_task_complete {
+text-decoration: line-through;
+/* color: var(--default); */
+}
+.todo_checkbox {
+    margin-right: 16px;
+}
+.todo_checkbox input{
+display: none;
+}
+.todo_checkbox input:checked+ div{
+background-color: var(--accent);
+}
+.todo_checkbox input:checked+ div::after{
+    display: block;
+}
+.todo_checkbox div {
+    cursor: pointer;
+    --size:28px;
+    height: var(--size);
+    width: var(--size);
+    border: 1px solid var(--accent);
+    border-radius: 4px;
+    position: relative;
+    color: white;
+}
+.todo_checkbox div::after {
+    content: '🗸';
+    text-align: center;
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+.todo_task-text {
+    font-size: 20px;
+}
+/* .todo_task-del {
+    display: none;
+    margin-left: auto;
+    margin-right: 0;
+    font-size: 44px;
+    line-height: calc(var(--size)*0.88);
+}  */
+.todo_task-edit,.todo_task-del{
+    margin-left: auto;
+    margin-right: 0;
+    font-size: 44px;
+    line-height: calc(var(--size)*0.88);
+    cursor: pointer;
+    text-align: center;
+    width: var(--size);
+    border: 1px solid black;
+    border-radius: var(--size);
+    line-height: calc(var(--size)*0.95);
+    height: var(--size);
+    font-size: 32px;
+    font-weight: 200;
     background: var(--accent);
     color: white;
 }

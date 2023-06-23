@@ -1,3 +1,6 @@
+const TRASH_ICON = 'fa fa-trash-o de';
+const EDIT_ICON = 'fa fa-edit ed';
+
 //нажатие на кнопку
 const dom={
   new: document.getElementById('new'),
@@ -6,7 +9,9 @@ const dom={
   taskList: document.getElementById('tasks'),
   currentDate: document.getElementById('current_date'),
   calendar:document.getElementById('calendar'),
-  setToday:document.getElementById('set_today')
+  setToday:document.getElementById('set_today'),
+  editInput:document.getElementById('edit_input'),
+  editModal:document.getElementById('edit_modal_block')
 }
 //опреленим класс note
 class Note {
@@ -19,6 +24,7 @@ class Note {
   }
 //массив куда создаются заметки пользователя
 let tasks=[];
+let editableNote;
 let selectedDate=new Date();
 selectedDate.setHours(0,0,0,0);
 
@@ -69,8 +75,8 @@ function displayNotes(){
      noteDivs+=`<div class='todo_task'>
      <input id=${tasks[i].id} type="checkbox" class='todo_checkbox' onclick=' changeNoteStatus(${tasks[i].id})'> </input>
      <div class=${targetTextClass}>${tasks[i].text}</div>
-     <div class='todo_task-del'  onclick=' delateTask(${tasks[i].id})'></div>
-     <div class='todo_task-edit'  onclick='editTask(${tasks[i].id})'></div>
+     <div class='todo_task-edit ${EDIT_ICON}'  onclick='openEditModal(${tasks[i].id})'></div>
+     <div class='todo_task-del ${TRASH_ICON}' onclick=' delateTask(${tasks[i].id})'></div>
      </div>`; 
    }
    } 
@@ -95,16 +101,24 @@ displayNotes()
 counts()
 }
 
-function editTask(id){
-var a=prompt('Enter a note')
-if(a===''){
-return
+function openEditModal(id){
+  editableNote=tasks.find(notes=>notes.id==id);
+  dom.editInput.value = editableNote.text;
+  dom.editModal.classList.remove('edit_modal_container');
+  
 }
-const edit1=tasks.find(notes=>notes.id==id)
-edit1.text=a
-localStorage.setItem('notes', JSON.stringify(tasks))
-displayNotes()
+
+function updateNote(){  
+  const updatedValue=dom.editInput.value
+  if(!updatedValue || updatedValue.trim() ==''){
+  return;
+  }
+  editableNote.text=updatedValue.trim();//с формы перенести значение в заметку которую хочет изменитть пользователь
+  localStorage.setItem('notes', JSON.stringify(tasks))
+  dom.editModal.classList.add('edit_modal_container');
+  displayNotes()
 }
+
 //отображаем текущюю или выбронную дату
 function displayDate(){
 const options = { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' };

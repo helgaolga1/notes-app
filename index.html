@@ -5,7 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>todo List</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./css/font-awesome.css">
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
     <div class="todo">
@@ -23,6 +24,15 @@
                 <strong id="count">0</strong>
             </div>
             <div id="tasks"class="todo_list">   </div>
+        </div>
+        <div id='edit_modal_block' class="edit_modal_container">
+            <form >
+                <p><label for="edit_input">Edit-modal</label></p>
+                <textarea id="edit_input" name="edit_input" rows="4" cols="50"></textarea>
+                <br>
+                <input type="button" onclick="updateNote()" value="Accept">
+                <!-- <input type="button" value="Delete"> -->
+              </form>
         </div>
     </div>
    <script src="script.js"></script> 
